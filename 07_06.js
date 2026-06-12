@@ -280,73 +280,145 @@
 
 // TASK 9 //
 
-async function promisePool(functions, n) {
-    const results = new Array(functions.length);
+// async function promisePool(functions, n) {
+//     const results = new Array(functions.length);
 
-    let nextIndex = 0;
+//     let nextIndex = 0;
 
-    async function worker() {
-        while (nextIndex < functions.length) {
-            const currentIndex = nextIndex++;
+//     async function worker() {
+//         while (nextIndex < functions.length) {
+//             const currentIndex = nextIndex++;
 
-            try {
-                results[currentIndex] =
-                    await functions[currentIndex]();
-            } catch (error) {
-                results[currentIndex] = error;
-            }
-        }
-    }
+//             try {
+//                 results[currentIndex] =
+//                     await functions[currentIndex]();
+//             } catch (error) {
+//                 results[currentIndex] = error;
+//             }
+//         }
+//     }
 
-    const workers = [];
+//     const workers = [];
 
-    const workerCount = Math.min(n, functions.length);
+//     const workerCount = Math.min(n, functions.length);
 
-    for (let i = 0; i < workerCount; i++) {
-        workers.push(worker());
-    }
+//     for (let i = 0; i < workerCount; i++) {
+//         workers.push(worker());
+//     }
 
-    await Promise.all(workers);
+//     await Promise.all(workers);
 
-    return results;
-}
+//     return results;
+// }
 
-const tasks = [
-    () => new Promise(res =>
-        setTimeout(() => {
-            console.log("Task 1");
-            res("Result 1");
-        }, 3000)
-    ),
+// const tasks = [
+//     () => new Promise(res =>
+//         setTimeout(() => {
+//             console.log("Task 1");
+//             res("Result 1");
+//         }, 3000)
+//     ),
 
-    () => new Promise(res =>
-        setTimeout(() => {
-            console.log("Task 2");
-            res("Result 2");
-        }, 1000)
-    ),
+//     () => new Promise(res =>
+//         setTimeout(() => {
+//             console.log("Task 2");
+//             res("Result 2");
+//         }, 1000)
+//     ),
 
-    () => new Promise(res =>
-        setTimeout(() => {
-            console.log("Task 3");
-            res("Result 3");
-        }, 2000)
-    ),
+//     () => new Promise(res =>
+//         setTimeout(() => {
+//             console.log("Task 3");
+//             res("Result 3");
+//         }, 2000)
+//     ),
 
-    () => new Promise(res =>
-        setTimeout(() => {
-            console.log("Task 4");
-            res("Result 4");
-        }, 1500)
-    ),
+//     () => new Promise(res =>
+//         setTimeout(() => {
+//             console.log("Task 4");
+//             res("Result 4");
+//         }, 1500)
+//     ),
 
-    () => new Promise(res =>
-        setTimeout(() => {
-            console.log("Task 5");
-            res("Result 5");
-        }, 500)
-    )
-];
+//     () => new Promise(res =>
+//         setTimeout(() => {
+//             console.log("Task 5");
+//             res("Result 5");
+//         }, 500)
+//     )
+// ];
 
-promisePool(tasks, 2)
-    .then(results => console.log(results));
+// promisePool(tasks, 2)
+//     .then(results => console.log(results));
+
+/////////////////////////
+
+
+// Ի՞նչ կտպի հետևյալ կոդի գործարկման արդյունքում։
+//Խնիդր 1
+
+// Start
+// Inside Promise Executor
+// End
+// Resolved Value
+
+//Խնդիր 2
+
+// A 
+// D 
+// C 
+// B 
+
+//Խնդիր 3
+
+// Success: First Success
+
+
+//Խնդիր 4
+
+// 2
+// 4
+// undefined
+// 10
+
+//Խնդիր 5
+
+// Hello Node.js
+// Step 2: undefined
+// Step 4: Next
+
+//Խնդիր 6
+
+// Caught: Failed at Step 1
+// Step 3: Recovered
+
+
+//Խնդիր 7
+
+// Main Start
+// Main End
+// Microtask 1
+// Microtask 2
+// Nested Microtask
+
+//Խնդիր 8
+
+// Handler 1: Data
+// Handler 2: Data
+
+//Խնդիր 9
+
+// Global Start
+// Inside Async Function
+// Global End
+// Await Result
+// Async End
+
+//Խնդիր 10
+
+// 1
+// 6
+// 3
+// 5
+// 2
+// 4
