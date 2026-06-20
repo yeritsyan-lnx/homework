@@ -69,15 +69,12 @@
 // function initializeServer(){
 //     connectToDatabase()
 //     .then(connection => {
-//         console.log(connection);
+//         console.log("Dbconnection");
+//         return loadParams(connection)
         
 //     })
 
-//     .then(connection => {
-//         const serverParams = loadParams(connection)
-//         return serverParams;
-//     })
-// }
+
 
 
 ///////////////////////
